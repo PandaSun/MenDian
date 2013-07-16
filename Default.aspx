@@ -20,20 +20,14 @@
     </asp:CheckBoxList>
     </td></tr>
 <tr><td>公司:<asp:CheckBoxList ID="cbl_GongSi" runat="server" AutoPostBack="True" 
-        DataSourceID="sdsGongSi" DataTextField="GS_Name" DataValueField="GS_ID" 
         RepeatColumns="15" RepeatDirection="Horizontal" Width="1130px">
     </asp:CheckBoxList>
-    <asp:SqlDataSource ID="sdsGongSi" runat="server" 
-        ConnectionString="<%$ ConnectionStrings:MenDianConnectionString %>" 
-        SelectCommand="SELECT [GS_ID], [GS_Name] FROM [GongSi] ORDER BY [GS_ID]">
-    </asp:SqlDataSource>
     </td></tr>
 <tr><td><div id="mymap" style="width: 1160px; height: 800px" align="center"></div></td></tr>
 </table>
 
 <script type="text/javascript">
     var map = new BMap.Map("mymap");                        // 创建Map实例
-
     map.centerAndZoom(new BMap.Point(121.477755,31.224322), 14);     // 初始化地图,设置中心点坐标和地图级别
     map.addControl(new BMap.NavigationControl());               // 添加平移缩放控件
     map.addControl(new BMap.ScaleControl());                    // 添加比例尺控件
@@ -41,13 +35,10 @@
     map.enableScrollWheelZoom();                            //启用滚轮放大缩小
     map.addControl(new BMap.MapTypeControl());          //添加地图类型控件
     map.setCurrentCity("上海");          // 设置地图显示的城市 此项是必须设置的
-
-
-                    <% GetMenDian(); %>;   
+                     <% GetMenDian(); %>;   
                     for (i = 0; i < MenDians.length; i++) {
                     var zuobiao = new Array();
                     zuobiao=MenDians[i].split(",");
-
                        var marker1 = new BMap.Marker(new BMap.Point(zuobiao[1], zuobiao[2]));
                            map.addOverlay(marker1); 
 var sContent =
@@ -58,11 +49,6 @@ var sContent =
      var infoWindow1 = new BMap.InfoWindow(sContent );
     marker1.addEventListener("click", function () { this.openInfoWindow(infoWindow1); });
                     }
-
-           // 将标注添加到地图中
-
-    //创建信息窗口
-
 </script>
 
     </asp:Content>
